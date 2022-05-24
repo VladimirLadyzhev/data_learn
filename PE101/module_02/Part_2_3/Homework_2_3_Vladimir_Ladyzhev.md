@@ -33,23 +33,28 @@
 
 ### 3. Запросы на вопросы из модуля 1.
 
->""Вычисление total sales""
->select sum(sales) as total_sales from orders;
->""Вычисление total profit""
->select sum(profit) as total_profit from orders;
->""Вычисление profit ratio""
->select round(sum(profit)/sum(sales), 2) as profit_ratio from orders;
->""Определить profit per order""
->select order_id, sum(profit) as order_profit from orders o
+>>""Вычисление total sales""
+
+>>select sum(sales) as total_sales from orders;
+
+>>""Вычисление total profit""
+
+>>select sum(profit) as total_profit from orders;
+
+>>""Вычисление profit ratio""
+
+>>select round(sum(profit)/sum(sales), 2) as profit_ratio from orders;
+>>""Определить profit per order""
+>>select order_id, sum(profit) as order_profit from orders o
 group by order_id
 limit 20;
->""Вычислить Sales per customer""
->select customer_id, sum(sales) as customer_sales from orders o
+>>""Вычислить Sales per customer""
+>>select customer_id, sum(sales) as customer_sales from orders o
 group by customer_id
 limit 20;
->""Вычислить average discount""
->select round(avg(discount)*100, 2) as "average_discount_%" from orders;
->""Вычислить Monthly sales by segment""
+>>""Вычислить average discount""
+>>select round(avg(discount)*100, 2) as "average_discount_%" from orders;
+>>""Вычислить Monthly sales by segment""
 >select extract (month from order_date) as month,
 extract (year from order_date) as year,
 segment, sum(sales) as revenue 
