@@ -44,37 +44,50 @@
 >>""Вычисление profit ratio""
 
 >>select round(sum(profit)/sum(sales), 2) as profit_ratio from orders;
+
 >>""Определить profit per order""
+
 >>select order_id, sum(profit) as order_profit from orders o
 group by order_id
 limit 20;
+
 >>""Вычислить Sales per customer""
+
 >>select customer_id, sum(sales) as customer_sales from orders o
 group by customer_id
 limit 20;
+
 >>""Вычислить average discount""
+
 >>select round(avg(discount)*100, 2) as "average_discount_%" from orders;
+
 >>""Вычислить Monthly sales by segment""
->select extract (month from order_date) as month,
+
+>>select extract (month from order_date) as month,
 extract (year from order_date) as year,
 segment, sum(sales) as revenue 
 from orders
 group by month, year, segment
 order by year, month, segment;
->""Вычислить Monthly sales by product category""
->select extract (month from order_date) as month,
+
+>>""Вычислить Monthly sales by product category""
+
+>>select extract (month from order_date) as month,
 extract (year from order_date) as year,
 category, sum(sales) as revenue 
 from orders
 group by month, year, category
 order by year, month, category;
->""Sales and profit by customer""
->select customer_id, sum(sales) as revenue, sum(profit) as total_profit
+
+>>""Sales and profit by customer""
+
+>>select customer_id, sum(sales) as revenue, sum(profit) as total_profit
 from orders o 
 group by customer_id
 order by revenue DESC
 limit 20;
->""Sales per region""
+
+>>""Sales per region""
 >select region, sum(sales) as revenue, sum(profit) as total_profit
 from orders o 
 group by region
